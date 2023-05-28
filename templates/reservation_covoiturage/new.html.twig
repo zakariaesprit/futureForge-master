@@ -1,0 +1,13 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}New ReservationCovoiturage{% endblock %}
+{% block titre %}New ReservationCovoiturage{% endblock %}
+{% block breadcrumbs %}New ReservationCovoiturage{% endblock %}
+
+{% block body %}
+    <h1>Create new ReservationCovoiturage</h1>
+
+    {{ include('reservation_covoiturage/_form.html.twig') }}
+
+    <a href="{{ path('app_reservation_covoiturage_index') }}">back to list</a>
+{% endblock %}

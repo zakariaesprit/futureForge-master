@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offres
+{% endblock %}
+
+{% block body %}
+	<h1>Offres COVOITURAGE</h1>
+
+	<form id="search-form">
+		<input type="text" class="form-control" id="search-input" placeholder="Search...">
+	</form>
+
+	<hr>
+
+	<div id="offre-table">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ImageVehicule</th>
+					<th>PrenomChauff</th>
+					<th>NumChauff</th>
+					<th>DateOffre</th>
+					<th>Heure</th>
+					<th>PrixOffre</th>
+					<th>Depart</th>
+					<th>Destination</th>
+					<th>PlacesDispo</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for offre in offres %}
+					<tr>
+						<td>{{ offre.imageVehicule }}</td>
+						<td>{{ offre.prenomChauff }}</td>
+						<td>{{ offre.numChauff }}</td>
+						<td>{{ offre.dateOffre ? offre.dateOffre|date('Y-m-d') : '' }}</td>
+						<td>{{ offre.heure ? offre.heure|date('H:i:s') : '' }}</td>
+						<td>{{ offre.prixOffre }}</td>
+						<td>{{ offre.depart }}</td>
+						<td>{{ offre.destination }}</td>
+						<td>{{ offre.placesDispo }}</td>
+						<td>
+							<a href="{{ path('admin_offre_show', {'idOffre': offre.idOffre}) }}">show</a>
+
+							{{ include('offreAdmin/_delete_form.html.twig') }}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="11">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchForm = document.getElementById('search-form');
+        var searchInput = document.getElementById('search-input');
+        var offreTable = document.getElementById('offre-table');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            var searchTerm = searchInput.value.trim();
+
+            if (searchTerm.length > 0) {
+                var xhr = new XMLHttpRequest();
+                var url = '/searchoffre?searchTerm=' + encodeURIComponent(searchTerm);
+
+                xhr.open('GET', url, true);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        updateTable(response); // Call a function to update the table with the response data
+                    }
+                };
+                xhr.send();
+            }
+        });
+
+        function updateTable(data) {
+            var tableBody = offreTable.getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear the existing table body
+
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var offre = data[i];
+                    var row = document.createElement('tr');
+
+                    // Build the table row with the offre data
+                    row.innerHTML = `
+						<td>${offre.imageVehicule}</td>
+						<td>${offre.prenomChauff}</td>
+						<td>${offre.numChauff}</td>
+						<td>${offre.dateOffre ? offre.dateOffre : ''}</td>
+						<td>${offre.heure ? offre.heure : ''}</td>
+						<td>${offre.prixOffre}</td>
+						<td>${offre.depart}</td>
+						<td>${offre.destination}</td>
+						<td>${offre.placesDispo}</td>
+                        <td>
+                            <a href="${offre.showUrl}">show</a>
+                        </td>
+                    `;
+
+                    tableBody.appendChild(row);
+                }
+            } else {
+                var noRecordsRow = document.createElement('tr');
+                noRecordsRow.innerHTML = '<td colspan="7">No records found</td>';
+                tableBody.appendChild(noRecordsRow);
+            }
+        }
+    });
+</script>
+{% endblock %}

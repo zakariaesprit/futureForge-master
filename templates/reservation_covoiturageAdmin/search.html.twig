@@ -1,0 +1,70 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}ReservationCovoiturage index
+{% endblock %}
+
+{% block body %}
+	<h1>Reservation Covoiturage
+	</h1>
+
+    <form id="search-form" action="{{ path('reservation_covoiturage_search') }}" method="get">
+        <div style="margin-bottom: 4px;" class="form-group">
+            <input type="text" name="q" class="form-control" value="{{ query }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <hr>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>PntRencontre</th>
+				<th>Distination</th>
+				<th>NbrPlace</th>
+				<th>Date</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for reservation_covoiturage in reservation_covoiturages %}
+				<tr>
+					<td>{{ reservation_covoiturage.nom }}</td>
+					<td>{{ reservation_covoiturage.prenom }}</td>
+					<td>{{ reservation_covoiturage.pntRencontre }}</td>
+					<td>{{ reservation_covoiturage.distination }}</td>
+					<td>{{ reservation_covoiturage.nbrPlace }}</td>
+					<td>{{ reservation_covoiturage.date ? reservation_covoiturage.date|date('Y-m-d') : '' }}</td>
+					<td>
+						<a href="{{ path('admin_reservation_covoiturage_show', {'idReservation': reservation_covoiturage.idReservation}) }}">show</a>
+						<a href="{{ path('admin_reservation_covoiturage_edit', {'idReservation': reservation_covoiturage.idReservation}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_reservation_covoiturage_new') }}">Create new</a>
+
+    <script>
+        $(function () {
+            $('#search-form').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $('#search-results').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

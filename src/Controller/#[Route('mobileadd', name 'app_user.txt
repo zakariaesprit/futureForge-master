@@ -1,0 +1,49 @@
+#[Route('/mobile/add', name: 'app_user_mobile_add')]
+    public function mobile_add(Request $request)
+    {
+        $email = $request->query->get("email");
+        $nom = $request->query->get("nom");
+        $prenom = $request->query->get("prenom");
+        $password = $request->query->get("password");
+        $username = $request->query->get("username");
+        $roles = $request->query->get("roles");
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return new Response ("email invalid");
+        }
+        $user = new User();
+        $user->setEmail($email);
+        $user->setRoles(array($roles));
+        $user->setPassword($password);
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
+        $user->setUsername($username);
+        try{
+            $em  =$this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return new JsonResponse ("Accoutn is created",200);
+        }
+        catch (Exception $ex){
+            return new Response ("exception".ex->getMessage());
+    }
+
+    }
+    #[Route('/mobile/login', name: 'app_user_mobile_login')]
+    public function mobile_login(Request $request)
+    {
+        $email = $request->query->get("email");
+        $password = $request->query->get("password");
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->findOneBy(['email'=>$email]);
+        if($user)
+        {
+                $serializer = new Serializer([new ObjectNormalizer()]);
+                $formatted = $serializer->normalize($user);
+                return new JsonResponse($formatted);
+        }
+        else{
+            return new JsonResponse("User not found");
+        }
+    }

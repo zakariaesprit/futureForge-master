@@ -1,0 +1,135 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}Abonnement index
+{% endblock %}
+
+{% block body %}
+	<h1>Abonnement index</h1>
+
+	<form id="search-form">
+		<input type="text" class="form-control" id="search-input" placeholder="Search...">
+	</form>
+
+	<hr>
+
+	<a style="width: 180px; margin: 10px;" class="btn btn-primary" href="{{path('sort_by_asc_date')}}">Date Début Asc</a>
+	<a style="width: 180px; margin: 10px" class="btn btn-primary" href="{{path('sort_by_desc_date')}}">Date Fin Desc</a>
+
+	<div id="abonnement-table">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Image</th>
+					<th>Email</th>
+					<th>Identifiant</th>
+					<th>Cin</th>
+					<th>Type</th>
+					<th>Dated</th>
+					<th>Datef</th>
+					<th>Prix</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for abonnement in abonnements %}
+					<tr>
+						<td>{{ abonnement.nom }}</td>
+						<td>{{ abonnement.prenom }}</td>
+						<td>
+							<img style="height: 100px; width: 100px; object-fit: cover;" src="{{ asset('uploads/' ~ abonnement.image) }}"/></td>
+						<td>{{ abonnement.email }}</td>
+						<td>{{ abonnement.identifiant }}</td>
+						<td>{{ abonnement.cin }}</td>
+						<td>{{ abonnement.type }}</td>
+						<td>{{ abonnement.dated ? abonnement.dated|date('Y-m-d') : '' }}</td>
+						<td>{{ abonnement.datef ? abonnement.datef|date('Y-m-d') : '' }}</td>
+						<td>{{ abonnement.prix }}</td>
+						<td>
+							<a href="{{ path('admin_abonnement_show', {'id': abonnement.id}) }}">show</a>
+							<a href="{{ path('print_abonnement', {'id': abonnement.id}) }}">export</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="12">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<a href="{{ path('print_abonnements', {'id': 0}) }}">export all</a>
+
+	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchForm = document.getElementById('search-form');
+        var searchInput = document.getElementById('search-input');
+        var abonnementTable = document.getElementById('abonnement-table');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            var searchTerm = searchInput.value.trim();
+
+            if (searchTerm.length > 0) {
+                var xhr = new XMLHttpRequest();
+                var url = '/searchabonnement?searchTerm=' + encodeURIComponent(searchTerm);
+
+                xhr.open('GET', url, true);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        updateTable(response); // Call a function to update the table with the response data
+                    }
+                };
+                xhr.send();
+            }
+        });
+
+        function updateTable(data) {
+            var tableBody = abonnementTable.getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear the existing table body
+
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var abonnement = data[i];
+                    var row = document.createElement('tr');
+
+                    // Build the table row with the abonnement data
+                    row.innerHTML = `
+                        <td>${abonnement.nom}</td>
+                        <td>${abonnement.prenom}</td>
+    <td>
+        <img style="height: 100px; width: 100px; object-fit: cover;" src="/uploads/${abonnement.image}"/>
+    </td>
+                        <td>${abonnement.email}</td>
+                        <td>${abonnement.identifiant}</td>
+                        <td>${abonnement.cin}</td>
+                        <td>${abonnement.type}</td>
+                        <td>${abonnement.dated ? abonnement.dated : ''}</td>
+                        <td>${abonnement.datef ? abonnement.datef : ''}</td>
+                        <td>${abonnement.prix}</td>
+                        <td>
+                            <a href="${abonnement.showUrl}">show</a>
+                            <a href="${abonnement.editUrl}">edit</a>
+                        </td>
+                    `;
+
+                    tableBody.appendChild(row);
+                }
+            } else {
+                var noRecordsRow = document.createElement('tr');
+                noRecordsRow.innerHTML = '<td colspan="7">No records found</td>';
+                tableBody.appendChild(noRecordsRow);
+            }
+        }
+    });
+</script>
+{% endblock %}

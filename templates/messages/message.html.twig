@@ -1,0 +1,16 @@
+{% extends 'baseback.html.twig' %}
+
+{% block main %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+
+    {{form_start(form,{'attr' :{'novalidate':'novalidate'}})}}
+
+
+    {{ form_end(form) }}
+
+
+    <!-- Include Flashy default partial -->
+
+{% endblock %}
+

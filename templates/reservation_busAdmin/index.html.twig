@@ -1,0 +1,121 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}ReservationBus index
+{% endblock %}
+
+{% block body %}
+	<h1>Reservation Bus
+	</h1>
+
+	<form id="search-form">
+		<input type="text" class="form-control" id="search-input" placeholder="Search...">
+	</form>
+
+	<hr>
+
+	<a style="width: 180px; margin: 10px;" class="btn btn-primary" href="{{path('sort_by_asc_date')}}">Date Asc</a>
+	<a style="width: 180px; margin: 10px" class="btn btn-primary" href="{{path('sort_by_desc_date')}}">Date Desc</a>
+
+	<div id="reservation-table">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>NumPlace</th>
+					<th>Date</th>
+					<th>Email</th>
+					<th>Destination</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for reservation_bu in reservation_buses %}
+					<tr>
+						<td>{{ reservation_bu.nom }}</td>
+						<td>{{ reservation_bu.prenom }}</td>
+						<td>{{ reservation_bu.numPlace }}</td>
+						<td>{{ reservation_bu.date ? reservation_bu.date|date('Y-m-d') : '' }}</td>
+						<td>{{ reservation_bu.email }}</td>
+						<td>{{ reservation_bu.destination }}</td>
+						<td>
+							<a href="{{ path('admin_reservation_bus_show', {'idReservationBus': reservation_bu.idReservationBus}) }}">show</a>
+							<a href="{{ path('admin_reservation_bus_edit', {'idReservationBus': reservation_bu.idReservationBus}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<a href="{{ path('admin_reservation_bus_new') }}">Create new</a>
+
+	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchForm = document.getElementById('search-form');
+        var searchInput = document.getElementById('search-input');
+        var reservationTable = document.getElementById('reservation-table');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            var searchTerm = searchInput.value.trim();
+
+            if (searchTerm.length > 0) {
+                var xhr = new XMLHttpRequest();
+                var url = '/searchresbus?searchTerm=' + encodeURIComponent(searchTerm);
+
+                xhr.open('GET', url, true);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        updateTable(response); // Call a function to update the table with the response data
+                    }
+                };
+                xhr.send();
+            }
+        });
+
+        function updateTable(data) {
+            var tableBody = reservationTable.getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear the existing table body
+
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var reservation = data[i];
+                    var row = document.createElement('tr');
+
+                    // Build the table row with the reservation data
+                    row.innerHTML = `
+                        <td>${reservation.nom}</td>
+                        <td>${reservation.prenom}</td>
+                        <td>${reservation.numPlace}</td>
+                        <td>${reservation.date ? reservation.date : ''}</td>
+                        <td>${reservation.email}</td>
+                        <td>${reservation.destination}</td>
+                        <td>
+                            <a href="${reservation.showUrl}">show</a>
+                            <a href="${reservation.editUrl}">edit</a>
+                        </td>
+                    `;
+
+                    tableBody.appendChild(row);
+                }
+            } else {
+                var noRecordsRow = document.createElement('tr');
+                noRecordsRow.innerHTML = '<td colspan="7">No records found</td>';
+                tableBody.appendChild(noRecordsRow);
+            }
+        }
+    });
+</script>
+
+{% endblock %}

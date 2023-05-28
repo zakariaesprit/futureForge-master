@@ -1,0 +1,56 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}Avis index
+{% endblock %}
+
+{% block body %}
+	<h1>Avis
+	</h1>
+
+	<div id="div_chart"></div>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		{{ gc_draw(piechart, "div_chart") }}</script>
+
+	<a style="width: 180px; margin: 10px;" class="btn btn-primary" href="{{path('sort_by_asc_rating')}}">Rating Asc</a>
+	<a style="width: 180px; margin: 10px" class="btn btn-primary" href="{{path('sort_by_desc_rating')}}">Rating Desc</a>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Rate</th>
+				<th>DescriptionAvis</th>
+				<th>Offre Cov</th>
+				<th>User</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for avi in avis %}
+				<tr>
+					<td>
+						{% if avi.rate <= 0 %}
+							<span class="fa fa-star" style="color: #c2c0c0;"></span>
+						{% else %}
+							{% for i in 1..avi.rate %}
+								<span class="fa fa-star checked" style="color: #01d28e;"></span>
+							{% endfor %}
+						{% endif %}
+					</td>
+					<td>{{ avi.descriptionAvis }}</td>
+					<td>{{ avi.idOffre }}</td>
+					<td>{{ avi.idUser }}</td>
+					<td>
+						<a href="{{ path('admin_avis_show', {'idAvis': avi.idAvis}) }}">show</a>
+						{{ include('avisAdmin/_delete_form.html.twig') }}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

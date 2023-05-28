@@ -1,0 +1,132 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}
+	Offres Ab
+{% endblock %}
+{% block titre %}
+	Offres Ab
+{% endblock %}
+{% block breadcrumbs %}
+	Offres Ab
+{% endblock %}
+
+{% block body %}
+	<div style="display: block;">
+		<div style="display: flex;
+																					  flex-wrap: wrap;
+																					  justify-content: center;
+																					  align-items: center;" class="fadeInUp" data-wow-delay="0.1s">
+			<div style="width: 100%;
+																																			  display: flex;
+																																			  justify-content: flex-start;
+																																			  flex-wrap: wrap;">
+
+
+				<div style="width: calc(25% - 20px);
+																													height: 200px;
+																																				  margin-right: 20px;
+																																				  margin-bottom: 20px;
+																																				  padding: 20px;
+																																				  background-color: #fff;
+																																				  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+																																				  border-radius: 4px;" class="project-item mb-5">
+					<div class="car-wrap rounded ftco-animate"></div>
+					<div class="text">
+						<h2 class="mb-0">
+							<a href="#">Choose your Offre Type</a>
+						</h2>
+					</div>
+				</div>
+
+
+				<div style="width: calc(25% - 20px);
+																																				  margin-right: 20px;
+																																				  margin-bottom: 20px;
+																																				  padding: 20px;
+																																				  background-color: #fff;
+																																				  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+																																				  border-radius: 4px;" class="project-item mb-5">
+					<div class="car-wrap rounded ftco-animate"></div>
+					<div class="text">
+						<h2 class="mb-0">
+							<a href="car-single.html">Offre Mensuelle</a>
+						</h2>
+						<div style="display: block;">
+							<div>
+								<span class="cat">remise 10 %</span>
+							</div>
+							<div>
+								<span class="cat">120 TND</span>
+							</div>
+							<div>
+								<span class="cat">1 Mois</span>
+							</div>
+						</div>
+						<p class="d-flex mb-0 d-block">
+							<a href="{{ path('app_offre2_men') }}" class="btn btn-secondary py-2 ml-1">See All</a>
+						</p>
+					</div>
+				</div>
+
+
+				<div style="width: calc(25% - 20px);
+																																				  margin-right: 20px;
+																																				  margin-bottom: 20px;
+																																				  padding: 20px;
+																																				  background-color: #fff;
+																																				  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+																																				  border-radius: 4px;" class="project-item mb-5">
+					<div class="car-wrap rounded ftco-animate"></div>
+					<div class="text">
+						<h2 class="mb-0">
+							<a href="car-single.html">Offre Semestrielle</a>
+						</h2>
+						<div style="display: block;">
+							<div>
+								<span class="cat">remise 20 %</span>
+								<div></div>
+								<span class="cat">120 TND</span>
+							</div>
+							<div>
+								<span class="cat">6 Mois</span>
+							</div>
+						</div>
+						<p class="d-flex mb-0 d-block">
+							<a href="{{ path('app_offre2_sem') }}" class="btn btn-secondary py-2 ml-1">See All</a>
+						</p>
+					</div>
+				</div>
+
+
+				<div style="width: calc(25% - 20px);
+																																				  margin-right: 20px;
+																																				  margin-bottom: 20px;
+																																				  padding: 20px;
+																																				  background-color: #fff;
+																																				  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+																																				  border-radius: 4px;" class="project-item mb-5">
+					<div class="car-wrap rounded ftco-animate"></div>
+					<div class="text">
+						<h2 class="mb-0">
+							<a href="car-single.html">Offre Annuelle</a>
+						</h2>
+						<div style="display: block;">
+							<div>
+								<span style="margin-left: 0; margin-right: auto;" class="cat">remise 30 %</span>
+							</div>
+							<div>
+								<span class="cat">120 TND</span>
+							</div>
+							<div>
+								<span class="cat">12 Mois</span>
+							</div>
+						</div>
+						<p class="d-flex mb-0 d-block">
+							<a href="{{ path('app_offre2_ann') }}" class="btn btn-secondary py-2 ml-1">See All</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

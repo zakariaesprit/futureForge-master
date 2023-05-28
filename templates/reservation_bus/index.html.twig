@@ -1,0 +1,37 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}ReservationBus{% endblock %}
+{% block titre %}ReservationBus{% endblock %}
+{% block breadcrumbs %}ReservationBus{% endblock %}
+
+{% block body %}
+            <a style="border: 1px solid #01d28e; padding: 10px;" href="{{ path('app_reservation_bus_new') }}">Ajout ReservationBus</a>
+    		<div style="margin-top: 50px;" class="row">
+        {% for reservation_bu in reservation_buses %}
+    			<div class="col-md-4">
+    				<div class="car-wrap rounded ftco-animate">
+    					<div class="text">
+    						<h2 class="mb-0"><a href="car-single.html">{{ reservation_bu.nom }} {{ reservation_bu.prenom }}</a></h2>
+    						<div class="d-flex mb-3" style="display: flex;">
+                            <div style="margin-left: 0; margin-right: auto;">
+	    						<span style="margin-left: 0; margin-right: auto;" class="cat">{{ reservation_bu.email }}</span>
+	    						<span class="cat">{{ reservation_bu.numPlace }}</span>
+                            </div>
+                            <div style="margin-right: 0; margin-left: auto;">
+	    						<p class="price ml-auto">{{ reservation_bu.date ? reservation_bu.date|date('Y-m-d') : '' }}</p>
+	    						<p class="price ml-auto">{{ reservation_bu.destination }}</p>
+                            </div>
+    						</div>
+    						<p class="d-flex mb-0 d-block"><a href="{{ path('app_reservation_bus_edit', {'idReservationBus': reservation_bu.idReservationBus}) }}" class="btn btn-primary py-2 mr-1">Edit</a>
+							 <a href="{{ path('app_reservation_bus_show', {'idReservationBus': reservation_bu.idReservationBus}) }}" class="btn btn-secondary py-2 ml-1">Details</a>
+							 </p>
+    					</div>
+    				</div>
+    			</div>
+        {% else %}
+    			<div class="col-md-4">
+                <p>no records found</p>
+    			</div>
+        {% endfor %}
+    		</div>
+{% endblock %}

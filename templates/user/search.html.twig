@@ -1,0 +1,44 @@
+{# templates/search/index.html.twig #}
+
+{% extends 'baseUser.html.twig' %}
+
+{% block body %}
+    <form id="search-form">
+        <input type="text" name="query" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul id="search-results"></ul>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var searchForm = document.getElementById('search-form');
+        var searchResults = document.getElementById('search-results');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(searchForm);
+
+            fetch('{{ path('search') }}?' + new URLSearchParams(formData))
+                .then(response => response.json())
+                .then(data => {
+                    searchResults.innerHTML = '';
+
+                    data.results.forEach(function(result) {
+                        var li = document.createElement('li');
+                        var title = document.createElement('h2');
+                        var description = document.createElement('p');
+
+                        title.textContent = result.title;
+                        description.textContent = result.description;
+
+                        li.appendChild(title);
+                        li.appendChild(description);
+                        searchResults.appendChild(li);
+                    });
+                });
+        });
+    </script>
+{% endblock %}

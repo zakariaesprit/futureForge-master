@@ -1,0 +1,13 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}Offres de Cov{% endblock %}
+{% block titre %}Offres de Cov{% endblock %}
+{% block breadcrumbs %}Offres de Cov{% endblock %}
+
+{% block body %}
+    <h1>Create new Offre</h1>
+
+    {{ include('offre/_form.html.twig') }}
+
+    <a href="{{ path('app_offre_index') }}">back to list</a>
+{% endblock %}

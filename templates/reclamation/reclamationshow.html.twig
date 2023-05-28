@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body  %}
+    <div class="card-body">
+        <h5 class="card-title">Reclamations</h5>
+
+        <!-- Default Table -->
+        <table class="table" id="t" > 
+            <thead>
+            <tr>
+
+                <th scope="col">type reclamation</th>
+                <th scope="col">description reclamation</th>
+                <th scope="col">objet</th>
+                <th scope="col">date_r</th>
+                <th scope="col">etat</th>
+
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            <tr {% for a in reclamation %}>
+
+                <td>{{ a.TypeR }}</td>
+                <td>{{ a.DescriptionR }}</td>
+                <td>{{ a.objet }}</td>
+                <td>{{ a.DateR|date("Y-m-d") }}</td>
+                <td>   {{ a.etat }}
+                </td>
+                <td> <a href="{{ path('delete_rec',{'id':a.idR}) }}"> Delete</a> <a href="{{ path('update_rec',{'id':a.idR}) }}"> update</a> </td>
+                <td> <a class="btn btn-block btn-success btn-lg font-weight-medium" href="{{path('exportcsv')}}">exporter</a></td>
+            </tr {% endfor %} >
+
+
+<input type="text" value="" class="form-control" placeholder="Rechercher..." id="myInput">
+    <button type="submit" class="btn btn-default btn-round btn-just-icon">
+</div>
+</div>
+            </tbody>
+        </table>
+
+        <!-- End Default Table Example -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                    $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    
+    
+    </div>
+
+
+
+
+{% endblock %}

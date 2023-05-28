@@ -1,0 +1,15 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}Edit ReservationBus{% endblock %}
+{% block titre %}Edit ReservationBus{% endblock %}
+{% block breadcrumbs %}Edit ReservationBus{% endblock %}
+
+{% block body %}
+    <h1>Edit ReservationBus</h1>
+
+    {{ include('reservation_bus/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_reservation_bus_index') }}">back to list</a>
+
+    {{ include('reservation_bus/_delete_form.html.twig') }}
+{% endblock %}

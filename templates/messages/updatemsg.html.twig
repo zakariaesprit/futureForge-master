@@ -1,0 +1,12 @@
+{% extends 'baseback.html.twig' %}
+
+{% block main %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    <div class="card-body">
+        <h5 class="card-title">Update Reclamation </h5>
+
+        {{ form_start(form)}}
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

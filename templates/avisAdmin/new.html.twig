@@ -1,0 +1,11 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}New Avis{% endblock %}
+
+{% block body %}
+    <h1>Create new Avis</h1>
+
+    {{ include('avisAdmin/_form.html.twig') }}
+
+    <a href="{{ path('admin_avis_index') }}">back to list</a>
+{% endblock %}

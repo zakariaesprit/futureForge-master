@@ -1,0 +1,13 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}Edit ReservationCovoiturage{% endblock %}
+
+{% block body %}
+    <h1>Edit ReservationCovoiturage</h1>
+
+    {{ include('reservation_covoiturageAdmin/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_reservation_covoiturage_index') }}">back to list</a>
+
+    {{ include('reservation_covoiturageAdmin/_delete_form.html.twig') }}
+{% endblock %}

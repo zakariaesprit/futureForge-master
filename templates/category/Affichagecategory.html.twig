@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+</br>
+<div style="display: flex;align-items:center;justify-content: center ; ">
+<style>
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="row classs">
+    <div class="bg-light rounded h-5000 p-4">
+ <div style="display:flex;align-items:center;">
+   
+   <h3 style="color:#333; font-weight:bold; margin-bottom: 10px; text-align: center;"> Category Table</h3>
+</div>
+<form method="post" class="mb-3">
+    <!-- contenu du formulaire -->
+</form>
+        
+    </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>nom</th>
+                    <th>description</th>
+                    <th>photo</th>
+                    <th>Modification</th>
+                    <th>suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categories in categories %}
+                    <tr>
+                        <td>{{ categories.getNom() }}</td>    
+                        
+                        <td>{{ categories.getDescription() }}</td>
+                        <td>
+                            {% if categories.getPhoto() %}
+                                <img src="{{ asset('Category_images_directory/' ~ categories.photo) }}" alt="{{ categories.photo }}">
+                            {% else %}
+                                Aucune photo disponible
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a  class="btn btn-success" href="{{ path('modify_category', {'id': categories.id}) }}">Modifier</a>
+                        </td>
+                        <td>
+                            <a  class="btn btn-danger" href="{{path('supp_category',{'id':categories.id})}}">suppression</a>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}  <!-- closing tag for the for loop -->
+            </tbody>
+        </table>
+   </div>
+            </div>
+
+        </div>
+
+    </div>
+     </div>
+     
+
+{% endblock %}

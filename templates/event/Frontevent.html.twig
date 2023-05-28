@@ -1,0 +1,52 @@
+{% extends 'base1.html.twig' %}
+
+{% block body %}
+<div style="display: flex;align-items:center;justify-content: center ; margin-block-start: 100px;">
+<style>
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+   <div class="row">
+<div class="bg-light rounded h-100 p-4">
+                
+                    <h5 class=class="mb-800">  event Table </h5>
+
+     <table class="table">
+        <thead>
+            <tr>
+                <th>nom</th>
+                <th>type</th>
+                <th>description</th>
+                <th>Date</th>
+                <th>Categorie_id</th>
+                <th>Modification</th>
+                <th>suppression</th>
+                 {% if sort_by == 'date' %}
+
+                            <a class="btn btn-primary me-2" href="{{ path('display_event', { sort_by: 'nom', order: sort_order }) }}">Trier par nom</a>
+                        {% else %}
+                            <a class="btn btn-primary me-2" href="{{ path('display_event', { sort_by: 'date', order: sort_order }) }}">Trier par Date </a>
+                        {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for Evenements in Evenements %}
+                <tr>
+                    <td>{{ Evenements.nom }}</td>
+                    <td>{{ Evenements.type }}</td>
+                    <td>{{ Evenements.description }}</td>
+                    <td>{{ Evenements.date|date('d/m/Y') }}</td>     
+                    <td>{{ Evenements.getCategoriesId().getNom() ?? "" }}</td>
+
+                        
+                      
+                    <td>
+                        <a class="btn btn-success" href="{{ path('modify_event', {'id': Evenements.id}) }}">Modifier</a>
+                    </td>
+                    <td>
+           <a class="btn btn-danger"href="{{path('supp_event',{'id':Evenements.id})}}">suppression</a>
+           </td>
+           
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

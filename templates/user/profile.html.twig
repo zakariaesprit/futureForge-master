@@ -1,0 +1,245 @@
+{% extends 'baseUser.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+    <section class="ftco-section ftco-car-details">
+      <div class="container">
+      	<div class="row justify-content-center">
+        <div style="text-align: center;">
+            <img class="hero-wrap hero-wrap-2 js-fullheight" src="{{ asset ('uploads/profile_picture/' ~ app.user.pfpU) }}">
+        </div>
+      		<div class="col-md-12">
+            
+      			<div class="car-details">
+      				
+                    <div class="text text-center">
+      					<span class="subheading">nom / prenom</span>
+      					<h2>{{ app.user.nom }} {{ app.user.prenom }}</h2>
+							<div  style="display: none;">
+								{{ form_widget(form.nom, {'attr': {'placeholder': 'username', 'class': 'form-control'}})}}
+                                {{ form_errors(form.nom, {'attr': {'style': 'color: red'}}) }} 
+								{{ form_widget(form.prenom, {'attr': {'placeholder': 'username', 'class': 'form-control'}})}}
+                                {{ form_errors(form.prenom, {'attr': {'style': 'color: red'}}) }} 
+								{{ form_widget(form.password, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.password, {'attr': {'style': 'color: red'}}) }} 
+								{{ form_widget(form.pfp_u, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.pfp_u, {'attr': {'style': 'color: red'}}) }}
+								{{ form_widget(form.active, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.active, {'attr': {'style': 'color: red'}}) }}
+								{{ form_widget(form.block_date, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.block_date, {'attr': {'style': 'color: red'}}) }}
+							</div>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+		  <!--modal-->
+		  <div class="row">
+      		<div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Email
+		                	<span>{{ app.user.email }}</span>
+							<a class="show-div-btn" data-target="#my-div-1">
+    							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        							<path fill="none" d="M0 0h24v24H0z"/>
+        							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 11h6v2H9z"/>
+    							</svg>
+							</a>
+							<div id="my-div-1" class="my-div" style="display: none;">
+    							{{ form_widget(form.email, {'attr': {'placeholder': 'username', 'class': 'form-control'}})}}
+                                {{ form_errors(form.email, {'attr': {'style': 'color: red'}}) }} 
+								<div class="form-group">
+                        			<button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+                    			</div>
+								
+							</div>
+							<a>Confirmer mail</a>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Matricule
+		                	<span>{{ app.user.matricule }}</span>
+								<a class="show-div-btn" data-target="#my-div-2">
+    							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        							<path fill="none" d="M0 0h24v24H0z"/>
+        							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 11h6v2H9z"/>
+    							</svg>
+							</a>
+							<div id="my-div-2" class="my-div" style="display: none;">
+    							{{ form_widget(form.matricule, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.matricule, {'attr': {'style': 'color: red'}}) }} 
+								<div class="form-group">
+                        			<button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+                    			</div>
+							</div>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Role
+		                	<span>{{ app.user.roles | join(', ') }}</span>
+								<div  style="display: none;">
+								{{ form_widget(form.roles, {'attr': {'placeholder': 'username', 'class': 'form-control'}})}}
+                                {{ form_errors(form.roles, {'attr': {'style': 'color: red'}}) }} 
+								</div>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Username
+		                	<span>{{ app.user.username }}</span>
+							<a class="show-div-btn" data-target="#my-div-3">
+    							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        							<path fill="none" d="M0 0h24v24H0z"/>
+        							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 11h6v2H9z"/>
+    							</svg>
+							</a>
+							<div id="my-div-3" class="my-div" style="display: none;">
+    							{{ form_widget(form.username, {'attr': {'placeholder': 'username', 'class': 'form-control'}})}}
+                                {{ form_errors(form.username, {'attr': {'style': 'color: red'}}) }} 
+								<div class="form-group">
+                        			<button class="btn btn-outline-primary">{{ button_label|default('Save') }}</button>
+                    			</div>
+							</div>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+      	</div>
+		<script>
+    const showDivBtns = document.querySelectorAll('.show-div-btn');
+    const myDivs = document.querySelectorAll('.my-div');
+
+    showDivBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const targetDivId = btn.dataset.target;
+            const targetDiv = document.querySelector(targetDivId);
+            if (targetDiv.style.display === 'none') {
+                targetDiv.style.display = 'block';
+            } else {
+                targetDiv.style.display = 'none';
+            }
+        });
+    });
+</script>
+      	<div class="row">
+      		<div class="col-md-12 pills">
+						<div class="bd-example bd-example-tabs">
+							<div class="d-flex justify-content-center">
+							  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+							    <li class="nav-item">
+							      <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Badge</a>
+							    </li>
+							    <li class="nav-item">
+							      <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Bio</a>
+							    </li>
+							    <li class="nav-item">
+							      <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Friends</a>
+							    </li>
+							  </ul>
+							</div>
+
+						  <div class="tab-content" id="pills-tabContent">
+						    <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+						    	<div class="row">
+						    		<div class="col-md-4">
+						    			<ul class="features">
+										<li id="email-verif-check" class="check" style="display:none;"><span class="ion-ios-checkmark"></span>Mail verifier</li>
+										<div  style="display: none;">
+											{{ form_widget(form.verif_code, {'attr': {'placeholder': '', 'class': 'form-control', 'onchange': 'checkEmailVerif()'}})}}
+											{{ form_widget(form.email_verif, {'attr': {'placeholder': '', 'class': 'form-control', 'onchange': 'checkEmailVerif()'}})}}
+											{{ form_widget(form.tel_verif, {'attr': {'placeholder': '', 'class': 'form-control', 'onchange': 'checkEmailVerif()'}})}}
+										</div>
+											<!-- JavaScript code -->
+											<script>
+												function checkEmailVerif() {
+    											var emailVerifField = document.getElementById("{{ form.email_verif.vars.id }}");
+    											var emailVerifValue = emailVerifField.value;
+    											var emailVerifCheck = document.getElementById("email-verif-check");
+    											if (emailVerifValue == 1) {
+        											emailVerifCheck.style.display = "block";
+    											} else {
+        											emailVerifCheck.style.display = "none";
+    											}
+												}
+											</script>
+						    			</ul>
+						    		</div>
+						    		<div class="col-md-4">
+						    			<ul class="features">
+						    				<li class="check"><span class="ion-ios-checkmark"></span>Tel verifier</li>
+						    				<li class="remove"><span class="ion-ios-close"></span>X</li>
+						    			</ul>
+						    		</div>
+						    	</div>
+						    </div>
+
+						    <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+								<p>{{ app.user.Bio }}</p>
+								<button id="show-form-btn" class="btn btn-secondary py-3 px-4">Update</button>
+								<div id="form-container" style="display: none;">
+									{{ form_widget(form.bio, {'attr': {'placeholder': 'bio', 'class': 'form-control'}})}}
+                                	{{ form_errors(form.bio, {'attr': {'style': 'color: red'}}) }} 
+  									<button id="show-form-btn" class="btn btn-secondary py-3 px-4">Save</button>
+								</div>
+
+								<script>
+  									const showFormBtn = document.getElementById('show-form-btn');
+  									const formContainer = document.getElementById('form-container');
+  									showFormBtn.addEventListener('click', () => {
+    								if (formContainer.style.display === 'none') {
+      								formContainer.style.display = 'block';
+    								} else {
+      								formContainer.style.display = 'none';
+    								}
+  									});
+								</script>
+
+							</div>
+							{{ form_end(form) }}
+						    <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+						      <div class="row">
+							   		<div class="col-md-7">
+							   		</div>
+							   	</div>
+						    </div>
+						  </div>
+						</div>
+		      </div>
+				</div>
+      </div>
+    </section>
+{% endblock %}

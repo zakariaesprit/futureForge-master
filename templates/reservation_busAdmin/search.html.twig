@@ -1,0 +1,70 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}ReservationBus index
+{% endblock %}
+
+{% block body %}
+	<h1>Reservation Bus
+	</h1>
+
+    <form id="search-form" action="{{ path('reservation_bus_search') }}" method="get">
+        <div style="margin-bottom: 4px;" class="form-group">
+            <input type="text" name="q" class="form-control" value="{{ query }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <hr>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>NumPlace</th>
+				<th>Date</th>
+				<th>Email</th>
+				<th>Destination</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for reservation_bu in reservation_buses %}
+				<tr>
+					<td>{{ reservation_bu.nom }}</td>
+					<td>{{ reservation_bu.prenom }}</td>
+					<td>{{ reservation_bu.numPlace }}</td>
+					<td>{{ reservation_bu.date ? reservation_bu.date|date('Y-m-d') : '' }}</td>
+					<td>{{ reservation_bu.email }}</td>
+					<td>{{ reservation_bu.destination }}</td>
+					<td>
+						<a href="{{ path('admin_reservation_bus_show', {'idReservationBus': reservation_bu.idReservationBus}) }}">show</a>
+						<a href="{{ path('admin_reservation_bus_edit', {'idReservationBus': reservation_bu.idReservationBus}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_reservation_bus_new') }}">Create new</a>
+
+    <script>
+        $(function () {
+            $('#search-form').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $('#search-results').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'baseUser.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'id': 'my-form'}}) }}
+    <div  style="display: none;">
+								{{ form_widget(form.active, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.active, {'attr': {'style': 'color: red'}}) }}
+								{{ form_widget(form.block_date, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.block_date, {'attr': {'style': 'color: red'}}) }}
+                                {{ form_widget(form.bio, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.bio, {'attr': {'style': 'color: red'}}) }}
+                                {{ form_widget(form.roles, {'attr': {'role': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.roles, {'attr': {'style': 'color: red'}}) }}
+                                {{ form_widget(form.verif_code, {'attr': {'role': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.verif_code, {'attr': {'style': 'color: red'}}) }}
+                                {{ form_widget(form.email_verif, {'attr': {'role': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.email_verif, {'attr': {'style': 'color: red'}}) }}
+                                {{ form_widget(form.tel_verif, {'attr': {'role': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.tel_verif, {'attr': {'style': 'color: red'}}) }}
+							</div>
+    <section class="ftco-section ftco-no-pt bg-light">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-12 featured-top">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <div class="request-form ftco-animate bg-primary">
+                            <h2>informations personnelles</h2>
+                                <div class="d-flex">
+                                    <div class="form-group">
+                                        <div class="form-group mr-2">
+                                            {{ form_label(form.nom, 'Nom', {'label_attr': {'style': 'color: white'}}) }}
+                                            {{ form_widget(form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}})}}
+                                            {{ form_errors(form.nom, {'attr': {'style': 'color: red'}}) }} 
+                                        </div>
+                                            
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group mr-2">
+                                            {{ form_label(form.prenom, 'Prenom', {'label_attr': {'style': 'color: white'}}) }}
+                                            {{ form_widget(form.prenom, {'attr': {'placeholder': 'Prenom', 'class': 'form-control'}})}}
+                                            {{ form_errors(form.prenom, {'attr': {'style': 'color: red'}}) }} 
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            {{ form_label(form.email, 'Email', {'label_attr': {'style': 'color: white'}}) }}
+                                            {{ form_widget(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'}})}}
+                                            {{ form_errors(form.email, {'attr': {'style': 'color: red'}}) }} 
+                                        </div>
+                                    </div>
+                                    <!-- Checkbox -->
+                                    <input type="checkbox" id="myCheckbox">
+
+                                    <!-- Label -->
+                                    <label for="myCheckbox" id="myLabel">
+                                        Label when Checkbox is not checked
+                                    </label>
+
+                                    <!-- JavaScript to handle checkbox state -->
+                                    <script>
+                                        document.getElementById('myCheckbox').addEventListener('change', function() {
+                                        var label = document.getElementById('myLabel');
+                                        var rolesFieldId = "{{ form.matricule.vars.id }}";
+                                        if (this.checked) {
+                                        label.innerHTML = 'Label when Checkbox is checked';
+                                        rolesField.value = 'new value'; // Set the desired value for the form field
+                                        } else {
+                                        label.innerHTML = 'Label when Checkbox is not checked';
+                                        rolesField.value = ''; // Set the desired value for the form field
+                                        }
+                                        });
+                                    </script>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            {{ form_label(form.matricule, 'matricule', {'label_attr': {'style': 'color: white'}}) }}
+                                            {{ form_widget(form.matricule, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                            {{ form_errors(form.matricule, {'attr': {'style': 'color: red'}}) }} 
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_label(form.pfp_u, 'pfp_u', {'label_attr': {'style': 'color: white'}}) }}
+                                            {{ form_widget(form.pfp_u, {'attr': {'placeholder': 'matricule', 'class': 'form-control', 'id': 'pfp_u_input'}})}}
+                                            {{ form_errors(form.pfp_u, {'attr': {'style': 'color: red'}}) }} 
+                                        </div>
+                                        <img id="pfp_u_preview" alt="Preview Image">
+                                        {{ form.pfp_u.vars.value }}
+                                        <script>
+                                            const pfp_u_input = document.getElementById('pfp_u_input');
+                                            const pfp_u_preview = document.getElementById('pfp_u_preview');
+
+                                            pfp_u_input.addEventListener('change', function() {
+                                            const file = this.files[0];
+                                            const fileURL = URL.createObjectURL(file);
+                                            pfp_u_preview.src = fileURL;
+                                            });
+                                        </script>
+                                    </div>
+                            </div>
+                        </div>
+                        {% block javascript %}
+                                            <script>
+                                                function checkInputs() {
+                                                    var input1 = document.getElementById("input1").value;
+                                                    var input2 = document.getElementById("input2").value;
+                                                    var button = document.getElementById("submit-btn");
+                                                    if (input1 === input2) {
+                                                        button.style.display = "block";
+                                                    } else {
+                                                        button.style.display = "none";
+                                                    }
+                                                }
+                                            </script>
+                        {% endblock %}
+                        <div class="col-md-8 d-flex align-items-center">
+	  						<div class="services-wrap rounded-right w-100">
+	  							<h3 class="heading-section mb-4">informations de compte</h3>
+	  							    <div class="row d-flex mb-4">
+					          		    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+					            		    <div class="services w-100 text-center">
+				              				    <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
+				              					    <div class="text w-100">
+					               					    {{ form_label(form.username, 'Username', {'label_attr': {'style': 'color: black'}}) }}
+													    {{ form_widget(form.username, {'attr': {'placeholder': 'Username', 'class': 'form-control'}})}}
+				                				    </div>
+					            			    </div>      
+					          			    </div>
+					          			    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+					            			    <div class="services w-100 text-center">
+				              					    <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-handshake"></span></div>
+				              						    <div class="text w-100">
+					                					{{ form_label(form.password, 'Password', {'label_attr': {'style': 'color: black'}}) }}
+													 	{{ form_widget(form.password, {'attr': {'placeholder': 'password', 'class': 'form-control'}}) }}
+					              					</div>
+					            				</div>      
+					          				</div>  
+                                            <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+					            			    <div class="services w-100 text-center">
+				              					    <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-handshake"></span></div>
+				              						    <div class="text w-100">
+                                                            <label for="input1">Password:</label>
+                                                            <input type="password" id="input1" onkeyup="checkInputs()"><br>
+					                					    <label for="input2">Confirm Password:</label>
+                                                            <input type="password" id="input2" onkeyup="checkInputs()"><br>
+					              					</div>
+					            				</div>      
+					          				</div>  
+                                            <p class="text-center mb-0">Already have an Account? <a href="{{ path('app_login') }}">Sign In</a></p>
+	  						                </div>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="form-group">
+                                        <button class="btn btn-secondary py-3 px-4" id="submit-btn">{{ button_label|default('Save') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+    </section>
+    
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+{% endblock %}

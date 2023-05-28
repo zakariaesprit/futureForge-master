@@ -1,0 +1,43 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}Offre2
+{% endblock %}
+
+{% block body %}
+	<h1>Offre</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Nom</th>
+				<td>{{ offre2.nom }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ offre2.description }}</td>
+			</tr>
+			<tr>
+				<th>Reduction</th>
+				<td>{{ offre2.reduction }}</td>
+			</tr>
+			<tr>
+				<th>Type</th>
+				<td>{{ offre2.type }}</td>
+			</tr>
+			<tr>
+				<th>Dated</th>
+				<td>{{ offre2.dated ? offre2.dated|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Datef</th>
+				<td>{{ offre2.datef ? offre2.datef|date('Y-m-d') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_offre2_index') }}">back to list</a>
+
+	<a href="{{ path('admin_offre2_edit', {'id': offre2.id}) }}">edit</a>
+
+	{{ include('offre2Admin/_delete_form.html.twig') }}
+{% endblock %}

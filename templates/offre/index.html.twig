@@ -1,0 +1,119 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}Offres de Cov
+{% endblock %}
+{% block titre %}Offres de Cov
+{% endblock %}
+{% block breadcrumbs %}Offres de Cov
+{% endblock %}
+
+{% block body %}
+
+	<a style="border: 1px solid #01d28e; padding: 10px;" href="{{ path('app_offre_new') }}">Ajout Offre de Cov</a>
+	<div style="display: block; margin-top: 50px;">
+		<form id="search-form" action="{{ path('offre_search') }}" method="get">
+			<div class="form-group">
+				<input type="text" name="q" class="form-control" value="{{ query }}">
+			</div>
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+
+		<hr>
+		<div style="display: flex;
+																																				  flex-wrap: wrap;
+																																				  justify-content: center;
+																																				  align-items: center;" class="fadeInUp" data-wow-delay="0.1s">
+			<div style="width: 100%;
+																																																												  display: flex;
+																																																												  justify-content: flex-start;
+																																																												  flex-wrap: wrap;">
+
+
+				{% for offre in offres %}
+					<div style="width: calc(25% - 20px);
+																																																																		  margin-right: 20px;
+																																																																		  margin-bottom: 20px;
+																																																																		  padding: 20px;
+																																																																		  background-color: #fff;
+																																																																		  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+																																																																		  border-radius: 4px;" class="project-item mb-5">
+						<div class="car-wrap rounded ftco-animate">
+							<img class="img rounded d-flex align-items-end" src="{{ asset('uploads/' ~ offre.imageVehicule) }}"/>
+						</div>
+						<div class="text">
+							<h2 class="mb-0" style="display: flex;">
+								<a href="car-single.html">{{ offre.prenomChauff }}</a>
+							</h2>
+							<div class="d-flex mb-3" style="display: flex;">
+								<div style="margin-left: 0; margin-right: auto;">
+									<div style="margin-left: auto; margin-right: 0;">
+										{% set avgRate = 0 %}
+										{% set nb = 0 %}
+										{% for avi in avis %}
+											{% if avi.idOffre == offre %}
+												{% set nb = nb + 1 %}
+												{% set avgRate = avgRate + avi.rate %}
+											{% endif %}
+										{% endfor %}
+										{% if nb == 0 %}
+											{% set avgRate = nb %}
+										{% else %}
+											{% set avgRate = avgRate / nb %}
+										{% endif %}
+										{% if avgRate <= 0 %}
+											<span class="fa fa-star" style="font-size: 20px; color: #c2c0c0;"></span>
+										{% else %}
+											{% for i in 1..avgRate %}
+												<span class="fa fa-star checked" style="font-size: 20px; color: #01d28e;"></span>
+											{% endfor %}
+										{% endif %}
+									</div>
+									<span style="margin-left: 0; margin-right: auto;" class="cat">{{ offre.numChauff }}</span>
+									<span class="cat">{{ offre.placesDispo }}</span>
+									<p class="price ml-auto">{{ offre.prixOffre }}
+										TND</p>
+									<p class="price ml-auto">{{ offre.dateOffre ? offre.dateOffre|date('Y-m-d') : '' }}
+										-
+										{{ offre.heure ? offre.heure|date('H:i:s') : '' }}</p>
+									<p class="price ml-auto">{{ offre.depart }}
+										->
+										{{ offre.destination }}</p>
+								</div>
+								{# <div style="margin-right: 0; margin-left: auto;">
+																																																																																</div> #}
+							</div>
+							<p class="d-flex mb-0 d-block">
+								<a href="{{ path('app_offre_edit', {'idOffre': offre.idOffre}) }}" class="btn btn-primary py-2 mr-1">Edit</a>
+								<a href="{{ path('app_offre_avis', {'idOffre': offre.idOffre}) }}" class="btn btn-primary py-2 ml-1">Avis</a>
+								<a href="{{ path('app_offre_show', {'idOffre': offre.idOffre}) }}" class="btn btn-secondary py-2 ml-1">Details</a>
+								<div style="margin-top: 6px;">
+									{{ include('offre/_delete_form.html.twig') }}
+								</div>
+							</p>
+						</div>
+					</div>
+				{% else %}
+					<div class="col-md-4">
+						<p>no records found</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(function () {
+$('#search-form').submit(function (e) {
+e.preventDefault();
+
+$.ajax({
+url: $(this).attr('action'),
+data: $(this).serialize(),
+success: function (data) {
+$('#search-results').html(data);
+}
+});
+});
+});
+	</script>
+{% endblock %}

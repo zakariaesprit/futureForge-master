@@ -1,0 +1,55 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}ReservationBus
+{% endblock %}
+{% block titre %}ReservationBus
+{% endblock %}
+{% block breadcrumbs %}ReservationBus
+{% endblock %}
+
+{% block body %}
+	<h1>ReservationBus</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>QR Code</th>
+				<td>
+					{% if qrCode %}
+						<img src="{{ qrCode }}" alt="qr-code">
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ reservation_bu.nom }}</td>
+			</tr>
+			<tr>
+				<th>Prenom</th>
+				<td>{{ reservation_bu.prenom }}</td>
+			</tr>
+			<tr>
+				<th>NumPlace</th>
+				<td>{{ reservation_bu.numPlace }}</td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td>{{ reservation_bu.date ? reservation_bu.date|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ reservation_bu.email }}</td>
+			</tr>
+			<tr>
+				<th>Destination</th>
+				<td>{{ reservation_bu.destination }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_reservation_bus_index') }}">back to list</a>
+
+	<a href="{{ path('app_reservation_bus_edit', {'idReservationBus': reservation_bu.idReservationBus}) }}">edit</a>
+
+	{{ include('reservation_bus/_delete_form.html.twig') }}
+{% endblock %}

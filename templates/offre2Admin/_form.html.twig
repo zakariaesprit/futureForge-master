@@ -1,0 +1,51 @@
+<div class="bg-light rounded h-100 p-4">
+	{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+	{{form_label(form.nom,'Nom : ',{'attr':{'class':'form-label'}})}}
+	<div class="form-floating mb-3">
+		{{form_widget(form.nom,{'attr':{'class':'form-control'}})}}
+		<div style="color: red; list-style: none;">
+			{{ form_errors(form.nom,{'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+
+	{{form_label(form.description,'Description : ',{'attr':{'class':'form-label'}})}}
+	<div class="form-floating mb-3">
+		{{form_widget(form.description,{'attr':{'class':'form-control'}})}}
+		<div style="color: red; list-style: none;">
+			{{ form_errors(form.description,{'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+
+	{{form_label(form.type,'Type : ',{'attr':{'class':'form-label'}})}}
+	<div class="form-floating mb-3">
+		{{form_widget(form.type,{'attr':{'class':'form-control'}})}}
+		<div style="color: red; list-style: none;">
+			{{ form_errors(form.type,{'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+
+	{{form_label(form.reduction,'Reduction : ',{'attr':{'class':'form-label'}})}}
+	<div class="form-floating mb-3">
+		{{form_widget(form.reduction,{'attr':{'class':'form-control'}})}}
+		<div style="color: red; list-style: none;">
+			{{ form_errors(form.reduction,{'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+	{{form_label(form.dated,'Date Debut : ',{'attr':{'class':'form-label'}})}}
+	<div class="form-floating mb-3">
+		{{form_widget(form.dated,{'attr':{'class':'form-control'}})}}
+		<div style="color: red; list-style: none;">
+			{{ form_errors(form.dated,{'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+	{{form_label(form.datef,'Date Fin : ',{'attr':{'class':'form-label'}})}}
+	<div class="form-floating mb-3">
+		{{form_widget(form.datef,{'attr':{'class':'form-control'}})}}
+		<div style="color: red;">
+			{{ form_errors(form.datef,{'attr':{'class':'form-control'}}) }}
+		</div>
+	</div>
+	<button class="btn">{{ button_label|default('Save') }}</button>
+	{{ form_end(form) }}
+</div>

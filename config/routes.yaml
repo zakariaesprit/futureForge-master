@@ -1,0 +1,15 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+searchresbus:
+    path: /searchresbus
+    controller: App\Controller\ReservationBusAdminController::searchResBus
+searchrescovoiturage:
+    path: /searchrescovoiturage
+    controller: App\Controller\ReservationCovoiturageAdminController::searchResCovoiturage
+searchabonnement:
+    path: /searchabonnement
+    controller: App\Controller\AbonnementAdminController::searchAbonnement
+searchoffre:
+    path: /searchoffre
+    controller: App\Controller\OffreAdminController::searchOffre

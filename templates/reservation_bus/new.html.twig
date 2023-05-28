@@ -1,0 +1,13 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}New ReservationBus{% endblock %}
+{% block titre %}New ReservationBus{% endblock %}
+{% block breadcrumbs %}New ReservationBus{% endblock %}
+
+{% block body %}
+    <h1>Create new ReservationBus</h1>
+
+    {{ include('reservation_bus/_form.html.twig') }}
+
+    <a href="{{ path('app_reservation_bus_index') }}">back to list</a>
+{% endblock %}

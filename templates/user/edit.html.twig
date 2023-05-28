@@ -1,0 +1,88 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <h1>Edit User</h1>
+    <div style="display: none;">
+        {{ form_row(form.password) }} 
+    </div>
+    <a href="{{ path('app_user_back') }}">back to list</a>
+    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">User</h6>
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.nom, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}})}}
+                                {{ form_errors(form.nom, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Nom</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.prenom, {'attr': {'placeholder': 'Prenom', 'class': 'form-control'}})}}
+                                {{ form_errors(form.prenom, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Prenom</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.email, {'attr': {'placeholder': 'email', 'class': 'form-control'}})}}
+                                {{ form_errors(form.email, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                {{ form_widget(form.matricule, {'attr': {'placeholder': 'matricule', 'class': 'form-control'}})}}
+                                {{ form_errors(form.matricule, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Matricule</label>
+                            </div>
+                             <div class="form-floating mb-2">
+                                {{ form_widget(form.username, {'attr': {'placeholder': 'username', 'class': 'form-control'}})}}
+                                {{ form_errors(form.username, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Username</label>
+                            </div>
+                             
+                            <div class="form-floating mb-2">
+                                {{ form_widget(form.roles, {'attr': {'placeholder': 'password', 'class': 'form-control'}})}}
+                                {{ form_errors(form.roles, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Role</label>
+                            </div>
+                            <div class="form-group">
+                                            {{ form_label(form.pfp_u, 'pfp_u', {'label_attr': {'style': 'color: white'}}) }}
+                                            {{ form_widget(form.pfp_u, {'attr': {'placeholder': 'matricule', 'class': 'form-control', 'id': 'pfp_u_input'}})}}
+                                            {{ form_errors(form.pfp_u, {'attr': {'style': 'color: red'}}) }} 
+                            </div>
+                                        <img id="pfp_u_preview" src="" alt="Preview Image">
+
+                                        <script>
+                                            document.getElementById('pfp_u_input').addEventListener('change', function(event) {
+                                            var input = event.target;
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = function(e) {
+                                                document.getElementById('pfp_u_preview').setAttribute('src', e.target.result);
+                                            }
+                                            reader.readAsDataURL(input.files[0]);
+                                            }
+                                            });
+                                        </script>
+                            <div class="form-floating mb-2">
+                                {{ form_widget(form.bio, {'attr': {'placeholder': 'password', 'class': 'form-control'}})}}
+                                {{ form_errors(form.bio, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Bio</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                {{ form_widget(form.active, {'attr': {'placeholder': 'password', 'class': 'form-control'}})}}
+                                {{ form_errors(form.active, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">active</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                {{ form_widget(form.block_date, {'attr': {'placeholder': 'password', 'class': 'form-control'}})}}
+                                {{ form_errors(form.block_date, {'attr': {'style': 'color: red'}}) }} 
+                                <label for="floatingInput">Block Date</label>
+                            </div>
+                        </div>
+                            
+                    </div>
+                    <div class="form-group">
+                        <button class="'btn btn-secondary py-3 px-4">{{ button_label|default('Save') }}</button>
+                    </div>
+                    {{ form_end(form) }}
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

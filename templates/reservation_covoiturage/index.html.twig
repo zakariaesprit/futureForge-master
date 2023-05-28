@@ -1,0 +1,37 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}ReservationCovoiturage{% endblock %}
+{% block titre %}ReservationCovoiturage{% endblock %}
+{% block breadcrumbs %}ReservationCovoiturage{% endblock %}
+
+{% block body %}
+            <a style="border: 1px solid #01d28e; padding: 10px;" href="{{ path('app_reservation_covoiturage_new') }}">Ajout ReservationCovoiturage</a>
+    		<div style="margin-top: 50px;" class="row">
+        {% for reservation_covoiturage in reservation_covoiturages %}
+    			<div class="col-md-4">
+    				<div class="car-wrap rounded ftco-animate">
+    					<div class="text">
+    						<h2 class="mb-0"><a href="car-single.html">{{ reservation_covoiturage.nom }} {{ reservation_covoiturage.prenom }}</a></h2>
+    						<div class="d-flex mb-3" style="display: flex;">
+                            <div style="margin-left: 0; margin-right: auto;">
+	    						<span style="margin-left: 0; margin-right: auto;" class="cat">{{ reservation_covoiturage.pntRencontre }}</span>
+	    						<span class="cat">{{ reservation_covoiturage.nbrPlace }}</span>
+                            </div>
+                            <div style="margin-right: 0; margin-left: auto;">
+	    						<p class="price ml-auto">{{ reservation_covoiturage.date ? reservation_covoiturage.date|date('Y-m-d') : '' }}</p>
+	    						<p class="price ml-auto">{{ reservation_covoiturage.distination }}</p>
+                            </div>
+    						</div>
+    						<p class="d-flex mb-0 d-block"><a href="{{ path('app_reservation_covoiturage_edit', {'idReservation': reservation_covoiturage.idReservation}) }}" class="btn btn-primary py-2 mr-1">Edit</a>
+							 <a href="{{ path('app_reservation_covoiturage_show', {'idReservation': reservation_covoiturage.idReservation}) }}" class="btn btn-secondary py-2 ml-1">Details</a>
+							 </p>
+    					</div>
+    				</div>
+    			</div>
+        {% else %}
+    			<div class="col-md-4">
+                <p>no records found</p>
+    			</div>
+        {% endfor %}
+    		</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base1.html.twig' %}
+
+{% block body %}
+
+</br>
+ <div class="container my-5">
+    <div class="row justify-content-center">
+      {% for categories in categories %}
+        <div class="col-md-8 my-9">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">{{ categories.getNom() }}</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ categories.getDescription() }}</p>
+                                   <td>
+                                    {% if categories.getPhoto() %}
+                                   <img src="{{ asset('Category_images_directory/' ~ categories.photo) }}" alt="{{ categories.photo }}">
+                                   {% else %}
+                                      Aucune photo disponible
+                                    {% endif %}
+                                     </td>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+
+    .container{
+      background-color: blue
+      ; /* votre couleur de fond ici */
+    }
+    
+    .card {
+        
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+      margin-block-start:70px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-block-end: 0;
+    }
+    
+    .card-text {
+      font-size: 1rem;
+      margin-block-end: 0.5rem;
+    }
+    
+    .btn-primary {
+      background-color: #1977CC;
+      border-color: #1977CC;
+      border-radius: 20px;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+    
+    .btn-primary:hover {
+      background-color: #0D3E5F;
+      border-color: #0D3E5F;
+    }
+  </style>
+
+ {% endblock %}

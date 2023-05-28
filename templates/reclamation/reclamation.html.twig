@@ -1,0 +1,17 @@
+{% extends 'baseUser.html.twig' %}
+
+{% block body %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+
+    {{form_start(form,{'attr' :{'novalidate':'novalidate'}})}}
+    
+
+
+    {{ form_end(form) }}
+
+
+    <!-- Include Flashy default partial -->
+
+{% endblock %}
+

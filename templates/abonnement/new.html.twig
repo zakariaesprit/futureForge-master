@@ -1,0 +1,43 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}Abonner
+{% endblock %}
+
+{% block body %}
+	<h1>Abonner à un offre</h1>
+
+	<div style="display: block;">
+		<div style="display: flex;
+																		  flex-wrap: wrap;
+																		  justify-content: center;
+																		  align-items: center;" class="fadeInUp" data-wow-delay="0.1s">
+			<div style="width: 100%;
+																														  display: flex;
+																														  justify-content: flex-start;
+																														  flex-wrap: wrap;">
+				<div style="width: calc(50% - 20px);
+																						  margin-right: 20px;
+																						  margin-bottom: 20px;
+																						  padding: 20px;
+																						  background-color: #fff;
+																						  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+																						  border-radius: 4px;" class="project-item mb-5">
+					{{ include('abonnement/_form.html.twig') }}
+					<a href="{{ path('app_abonnement_index') }}">back to list</a>
+				</div>
+
+				<div style="width: calc(50% - 20px);
+																							  margin-right: 20px;
+																							  margin-bottom: 20px;
+																							  padding: 20px;" class="project-item mb-5">
+					<p>Type d'offre: {{ offre2.type }}</p>
+					<p>Prix: 120 TND</p>
+					<p>Remise: {{ offre2.reduction }} %</p>
+					<p>Prix après remise: {{ 120 - offre2.reduction * 120 / 100 }} TND</p>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

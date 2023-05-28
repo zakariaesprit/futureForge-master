@@ -1,0 +1,77 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}    
+    <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="table-responsive">
+                        <input class="form-control border-0" type="text" placeholder="Search" id="user-search">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0"  id="user-table">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">Id</th> 
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Roles</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prenom</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Matricule</th>
+                                    <th scope="col">bio</th>
+                                    <th scope="col">Active</th>
+                                    <th scope="col">Date block</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                   {% for user in users %}
+                                    <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                                    <td>{{ user.nom }}</td>
+                                    <td>{{ user.prenom }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.matricule }}</td>
+                                    <td>{{ user.bio }}</td>
+                                    <td>{{ user.active }}</td>
+                                     <td>{{ user.getBlockDate()|date('Y-m-d H:i:s') }}</td>
+                                    <td>
+                                    <a  class="btn btn-sm btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                                    </td>
+                                    <td>
+                                    <a  class="btn btn-sm btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                                    </td>
+                                </tr>
+                                    {% else %}
+            <tr>
+                <td colspan="10">chay</td>
+            </tr>
+            <div  style="display: none;">{{ user.password }}</div>
+            <div  style="display: none;">{{ user.pfpU }}</div>
+        {% endfor %}
+        <script>
+        const searchInput = document.getElementById('user-search');
+        searchInput.addEventListener('input', () => {
+            const searchQuery = searchInput.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+            tableRows.forEach(row => {
+                const rowData = row.innerText.toLowerCase();
+                if (rowData.includes(searchQuery)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="{{ path('app_user_new') }}">Create new</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+{% endblock %}

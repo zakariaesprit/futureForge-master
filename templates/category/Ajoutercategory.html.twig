@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+         </br>
+           <div style="display: flex;align-items:center;justify-content: center">
+                 <div class="row">
+                 <div class="bg-light rounded h-400 p-4">
+                
+                    <h5 class="mb-4">Ajouter une catégorie</h5>
+                   
+</head>
+<body>
+	
+
+                    <!-- General Form Elements -->
+                   {{ form_start(c, {attr: {novalidate: 'novalidate'}}) }}
+                   <div class="form-group">
+    <label for="inputText" class="col-sm-8 col-form-label">Nom categorie</label>
+        {{ form_widget(c.nom, {'attr': {'class': 'form-control'}}) }}
+    <div style="color: red; list-style: none;">
+    {{ form_errors(c.nom, {'attr': {'class': 'text-danger'}}) }}
+
+    </div>
+    </div>
+		
+    <div class="form-group">
+    <label for="inputText" class="col-sm-10 col-form-label">description</label>
+    <div class="col-sm-50">
+        {{ form_widget(c.description, {'attr': {'class': 'form-control', 'style': 'block-size: 150px;'}}) }}
+    <div style="color: red; list-style: none;">
+    {{ form_errors(c.description, {'attr': {'class': 'text-danger'}}) }}
+      </div>
+       </div>
+       <div class="form-group">
+    <label for="inputText" class="col-sm-8 col-form-label">Photo</label>
+    <div class="col-sm-50">
+        {{ form_widget(c.photo, {'attr': {'class': 'form-control'}}) }}
+    
+    <div style="color: red; list-style: none;">
+    {{ form_errors(c.photo, {'attr': {'class': 'text-danger'}}) }}
+    </div>
+    </div>
+    <br/>
+    <div class="col-sm-50" style="display: flex; align-items: center; justify-content: center">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+{{ form_end(c) }}
+
+
+                </div>
+            </div>
+
+        </div>
+
+             </div>
+             </div>
+
+
+{% endblock %}

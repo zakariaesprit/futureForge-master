@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Abonnement Print</title>
+    <link rel="stylesheet" href="/style.css" media="all" />
+</head>
+<body>
+<header class="clearfix">
+    <h1 align="center">ThniTy Abonnement </h1>
+    <hr></hr>
+    <div><span>Abonnement N° </span> {{ abonnement.id }} </div>
+    <hr></hr>
+    <div id="company" class="clearfix">
+        <div><span>Nom: </span> {{ abonnement.nom }}  </div>
+        <div><span>Prenom: </span> {{ abonnement.prenom }}  </div>
+        <div><span>Email: </span> {{ abonnement.email }}  </div>
+        <div><span>Identifiant: </span> {{ abonnement.identifiant }}  </div>
+        <div><span>CIN: </span> {{ abonnement.cin }}  </div>
+        <div><span>Type d'offre: </span> {{ abonnement.type }}  </div>
+        <div><span>Date Debut: </span> {{ abonnement.dated ? abonnement.dated|date('Y-m-d') : '' }}  </div>
+        <div><span>Date Fin: </span> {{ abonnement.datef ? abonnement.datef|date('Y-m-d') : '' }}  </div>
+        <div><span>Offre: </span> {{ abonnement.idOffre.nom }}  </div>
+        <hr></hr>
+    </div>
+</header>
+
+</body>

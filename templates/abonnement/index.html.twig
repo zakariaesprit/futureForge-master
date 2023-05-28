@@ -1,0 +1,71 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}
+	Mes Abonnements
+{% endblock %}
+{% block titre %}
+	Mes Abonnements
+{% endblock %}
+{% block breadcrumbs %}
+	Mes Abonnements
+{% endblock %}
+
+{% block body %}
+
+	<a style="border: 1px solid #01d28e; padding: 10px;" href="{{ path('app_offre2_index') }}">See Offres Abonnement</a>
+	<div style="display: block; margin-top: 50px;">
+		<div style="display: flex;
+									  flex-wrap: wrap;
+									  justify-content: center;
+									  align-items: center;" class="fadeInUp" data-wow-delay="0.1s">
+			<div style="width: 100%;
+															  display: flex;
+															  justify-content: flex-start;
+															  flex-wrap: wrap;">
+				{% for abonnement in abonnements %}
+					<div style="width: calc(25% - 20px);
+												  margin-right: 20px;
+												  margin-bottom: 20px;
+												  padding: 20px;
+												  background-color: #fff;
+												  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+												  border-radius: 4px;" class="project-item mb-5">
+						<div class="car-wrap rounded ftco-animate">
+							<img class="img rounded d-flex align-items-end" src="{{ asset('uploads/' ~ abonnement.image) }}"/>
+						</div>
+						<div class="text">
+							<h2 class="mb-0">
+								<a href="car-single.html">{{ abonnement.nom }}
+									{{ abonnement.prenom }}</a>
+							</h2>
+							<div class="d-flex mb-3" style="display: flex;">
+								<div style="margin-left: 0; margin-right: auto;">
+									<span style="margin-left: 0; margin-right: auto;" class="cat">{{ abonnement.identifiant }}</span>
+									<span class="cat">{{ abonnement.cin }}</span>
+									<span class="cat">{{ abonnement.email }}</span>
+									<span class="cat">{{ abonnement.type }}</span>
+									<p class="price ml-auto">{{ abonnement.prix }}
+										TND</p>
+									<p class="price ml-auto">{{ abonnement.type }}</p>
+									<p class="price ml-auto">{{ abonnement.dated ? abonnement.dated|date('Y-m-d') : '' }}
+										-
+										{{ abonnement.datef ? abonnement.datef|date('Y-m-d') : '' }}</p>
+								</div>
+								{# <div style="margin-right: 0; margin-left: auto;">
+								</div> #}
+							</div>
+							<p class="d-flex mb-0 d-block">
+								<a href="{{ path('app_abonnement_edit', {'id': abonnement.id}) }}" class="btn btn-primary py-2 mr-1">Edit</a>
+								<a href="{{ path('app_abonnement_show', {'id': abonnement.id}) }}" class="btn btn-secondary py-2 ml-1">Details</a>
+							</p>
+						</div>
+					</div>
+				{% else %}
+					<div class="col-md-4">
+						<p>no records found</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

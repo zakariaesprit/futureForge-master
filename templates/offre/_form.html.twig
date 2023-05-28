@@ -1,0 +1,91 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+<div class="form-group">
+	{{form_label(form.imageVehicule,'imageVehicule : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.imageVehicule,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.imageVehicule,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.prenomChauff,'prenomChauff : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.prenomChauff,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.prenomChauff,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.numChauff,'numChauff : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.numChauff,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.numChauff,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.dateOffre,'dateOffre : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.dateOffre,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.dateOffre,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.heure,'heure : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.heure,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.heure,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.prixOffre,'prixOffre : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.prixOffre,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.prixOffre,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.depart,'depart : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.depart,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.depart,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.destination,'destination : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.destination,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.destination,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+
+<div class="form-group">
+	{{form_label(form.placesDispo,'placesDispo : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.placesDispo,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.placesDispo,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+<div class="form-group">
+	{{form_label(form.idUser,'User : ',{'attr':{'class':'form-label'}})}}
+	{{form_widget(form.idUser,{'attr':{'class':'form-control'}})}}
+	<div style="color: red; list-style: none;">
+		{{ form_errors(form.idUser,{'attr':{'class':'form-control'}}) }}
+	</div>
+</div>
+
+<button type="submit" style="background-color: #01d28e!important; border-color: #01d28e!important;" class="btn btn-primary py-3 px-5">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

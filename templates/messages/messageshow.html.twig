@@ -1,0 +1,38 @@
+{% extends 'baseback.html.twig' %}
+{% block main  %}
+    <div class="card-body">
+        <h5 class="card-title">Messages</h5>
+
+        <!-- Default Table -->
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th scope="col">date</th>
+                <th scope="col">etat</th>
+                <th scope="col">type_m</th>
+                <th scope="col">contenu</th>
+
+
+
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr {% for a in message %}>
+                <td>{{ a.date|date("Y-m-d") }}</td>
+                <td>{{ a.etat }}</td>
+                <td>{{ a.typeM }}</td>
+                <td>{{ a.contenu }}</td>
+
+                </td>
+                <td> <a href="{{ path('delete_msg',{'id':a.id}) }}"> Delete</a> <a href="{{ path('update_msg',{'id':a.id}) }}"> update</a> </td>
+
+            </tr {% endfor %} >
+
+            </tbody>
+        </table>
+
+        <!-- End Default Table Example -->
+    </div>
+{% endblock %}

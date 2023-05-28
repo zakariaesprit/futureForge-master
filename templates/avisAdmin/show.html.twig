@@ -1,0 +1,39 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}Avis
+{% endblock %}
+
+{% block body %}
+	<h1>Avis</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Rate</th>
+				<td>
+					{% if avi.rate <= 0 %}
+						<span class="fa fa-star" style="color: #c2c0c0;"></span>
+					{% else %}
+						{% for i in 1..avi.rate %}
+							<span class="fa fa-star checked" style="color: #01d28e;"></span>
+						{% endfor %}
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<th>DescriptionAvis</th>
+				<td>{{ avi.descriptionAvis }}</td>
+			</tr>
+			<tr>
+				<th>DescriptionAvis</th>
+				<td>{{ avi.idOffre }}</td>
+			</tr>
+			<tr>
+				<th>DescriptionAvis</th>
+				<td>{{ avi.idUser }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_avis_index') }}">back to list</a>
+{% endblock %}

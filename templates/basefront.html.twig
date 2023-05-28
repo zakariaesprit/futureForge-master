@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link href="{{asset("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap")}}" rel="stylesheet">
+
+		<link rel="stylesheet" href="{{asset("css/open-iconic-bootstrap.min.css")}}">
+		<link rel="stylesheet" href="{{asset("css/animate.css")}}">
+
+		<link rel="stylesheet" href="{{asset("css/owl.carousel.min.css")}}">
+		<link rel="stylesheet" href="{{asset("css/owl.theme.default.min.css")}}">
+		<link rel="stylesheet" href="{{asset("css/magnific-popup.css")}}">
+
+		<link rel="stylesheet" href="{{asset("css/aos.css")}}">
+
+		<link rel="stylesheet" href="{{asset("css/ionicons.min.css")}}">
+
+		<link rel="stylesheet" href="{{asset("css/bootstrap-datepicker.css")}}">
+		<link rel="stylesheet" href="{{asset("css/jquery.timepicker.css")}}">
+
+
+		<link rel="stylesheet" href="{{asset("css/flaticon.css")}}">
+		<link rel="stylesheet" href="{{asset("css/icomoon.css")}}">
+		<link rel="stylesheet" href="{{asset("css/style.css")}}">
+	</head>
+	<body>
+
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('app_home') }}">THN<span>ITY</span>
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="oi oi-menu"></span>
+					Menu
+				</button>
+
+				<div class="collapse navbar-collapse" id="ftco-nav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a href="{{ path('app_home') }}" class="nav-link">Home</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('app_abonnement_index') }}" class="nav-link">Abonnement</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('add_reclamation') }}" class="nav-link">Reclamation</a>
+						</li>
+						
+						<li class="nav-item">
+							<a href="{{ path('app_offre_index') }}" class="nav-link">Offre de Cov</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('app_reservation_bus_index') }}" class="nav-link">Reservation Bus</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('app_reservation_covoiturage_index') }}" class="nav-link">Reservation Covoiturage</a>
+						</li>
+							 {% if app.user %}
+            <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="{{ asset ('uploads/profile_picture/' ~ app.user.pfpU) }}" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">{{ app.user.nom }}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="{{ path('profile') }}" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="{{ path('messages') }}" class="dropdown-item">Messages</a>
+                            <a href="{{ path('app_logout') }}" class="dropdown-item">Log Out</a>
+                        </div>
+              </div>
+              {% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+	
+
+		<div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
+					<div class="col-lg-8 ftco-animate">
+						<div class="text w-100 text-center mb-md-5 pb-md-5">
+							<h1 class="mb-4">Fast &amp; Easy Way To MOVE</h1>
+						<a href="{{ path('app_login') }}" class="nav-item nav-link">
+							<i class="fa fa-tachometer-alt me-2"></i>Login</a>
+							<!-- <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p> 
+																																																																																																																																					<a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
+																																																																																																																																						<div class="icon d-flex align-items-center justify-content-center">
+																																																																																																																																							<span class="ion-ios-play"></span> 
+																																																																																																																						</div>
+																																																																																																																						<div class="heading-title ml-5">
+																																																																																																																							<span>Easy steps for renting a car</span>
+																																																																																																																						</div> -->
+						</a>
+					</div>
+				</div>
+			</div>
+		</body>
+	</body>
+</html></div></div><section class="ftco-section ftco-no-pt bg-light"><div class="container">
+	<!-- END nav -->
+	{% block main %}
+	{% endblock %}
+<div class="row no-gutters">
+	<div class="col-md-12	featured-top">
+		<div class="row no-gutters">
+			<div
+				class="col-md-4 d-flex align-items-center"><!--	<form action="#" class="request-form ftco-animate bg-primary">
+																																																																																<h2>Make your trip</h2>
+																																																																																<div class="form-group">
+																																																																																	<label for="" class="label">Pick-up location</label>
+																																																																																	<input type="text" class="form-control" placeholder="City, Airport, Station, etc">
+																																																																																</div>
+																																																																																<div class="form-group">
+																																																																																	<label for="" class="label">Drop-off location</label>
+																																																																																	<input type="text" class="form-control" placeholder="City, Airport, Station, etc">
+																																																																																</div>
+																																																																																<div class="d-flex">
+																																																																																	<div class="form-group mr-2">
+																																																																																		<label for="" class="label">Pick-up date</label>
+																																																																																		<input type="text" class="form-control" id="book_pick_date" placeholder="Date">
+																																																																																	</div>
+																																																																																	<div class="form-group ml-2">
+																																																																																		<label for="" class="label">Drop-off date</label>
+																																																																																		<input type="text" class="form-control" id="book_off_date" placeholder="Date">
+																																																																																	</div>
+																																																																																</div>
+																																																																																<div class="form-group">
+																																																																																	<label for="" class="label">Pick-up time</label>
+																																																																																	<input type="text" class="form-control" id="time_pick" placeholder="Time">
+																																																																																</div>
+																																																																																<div class="form-group">
+																																																																																	<input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+																																																																																</div>
+																																																																															</form> 
+																																																																									</div>
+																																																																									<div class="col-md-8 d-flex align-items-center">
+																																																																										<div class="services-wrap rounded-right w-100">
+																																																																											<h3 class="heading-section mb-4">Better Way to Rent Your Perfect Cars</h3>
+																																																																											<div class="row d-flex mb-4">
+																																																																												<div class="col-md-4 d-flex align-self-stretch ftco-animate">
+																																																																													<div class="services w-100 text-center">
+																																																																														<div class="icon d-flex align-items-center justify-content-center">
+																																																																															<span class="flaticon-route"></span>
+																																																																														</div>
+																																																																														<div class="text w-100">
+																																																																															<h3 class="heading mb-2">Choose Your Pickup Location</h3>
+																																																																														</div>
+																																																																													</div>
+																																																																												</div>
+																																																																												<div class="col-md-4 d-flex align-self-stretch ftco-animate">
+																																																																													<div class="services w-100 text-center">
+																																																																														<div class="icon d-flex align-items-center justify-content-center">
+																																																																															<span class="flaticon-handshake"></span>
+																																																																														</div>
+																																																																														<div class="text w-100">
+																																																																															<h3 class="heading mb-2">Select the Best Deal</h3>
+																																																																														</div>
+																																																																													</div>
+																																																																												</div>
+																																																																												<div class="col-md-4 d-flex align-self-stretch ftco-animate">
+																																																																													<div class="services w-100 text-center">
+																																																																														<div class="icon d-flex align-items-center justify-content-center">
+																																																																															<span class="flaticon-rent"></span>
+																																																																														</div>
+																																																																														<div class="text w-100">
+																																																																															<h3 class="heading mb-2">Reserve Your Rental Car</h3>
+																																																																														</div>
+																																																																													</div>
+																																																																												</div>
+																																																																											</div>
+																																																																											<p>
+																																																																												<a href="#" class="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a>
+																																																																											</p>
+																																																																										</div>
+																																																																									</div>
+																																																																								</div>
+																																																																							</div> -->
+			</div>
+		</section>
+		<section class="ftco-section ftco-no-pt bg-light">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+						<span class="subheading">What we offer</span>
+						<h2 class="mb-2">Feeatured OFFERS</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="carousel-car owl-carousel">
+							<div class="item">
+								<div class="car-wrap rounded ftco-animate">
+									<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-1.jpg);"></div>
+									<div class="text">
+										<h2 class="mb-0">
+											<a href="#">Mercedes Grand Sedan</a>
+										</h2>
+										<div class="d-flex mb-3">
+											<span class="cat">Cheverolet</span>
+											<p class="price ml-auto">$500
+												<span>/day</span>
+											</p>
+										</div>
+										<p class="d-flex mb-0 d-block">
+											<a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
+											<a href="#" class="btn btn-secondary py-2 ml-1">Details</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="car-wrap rounded ftco-animate">
+									<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-2.jpg);"></div>
+									<div class="text">
+										<h2 class="mb-0">
+											<a href="#">Mercedes Grand Sedan</a>
+										</h2>
+										<div class="d-flex mb-3">
+											<span class="cat">Cheverolet</span>
+											<p class="price ml-auto">$500
+												<span>/day</span>
+											</p>
+										</div>
+										<p class="d-flex mb-0 d-block">
+											<a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
+											<a href="#" class="btn btn-secondary py-2 ml-1">Details</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="car-wrap rounded ftco-animate">
+									<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-3.jpg);"></div>
+									<div class="text">
+										<h2 class="mb-0">
+											<a href="#">Mercedes Grand Sedan</a>
+										</h2>
+										<div class="d-flex mb-3">
+											<span class="cat">Cheverolet</span>
+											<p class="price ml-auto">$500
+												<span>/day</span>
+											</p>
+										</div>
+										<p class="d-flex mb-0 d-block">
+											<a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
+											<a href="#" class="btn btn-secondary py-2 ml-1">Details</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="car-wrap rounded ftco-animate">
+									<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-4.jpg);"></div>
+									<div class="text">
+										<h2 class="mb-0">
+											<a href="#">Mercedes Grand Sedan</a>
+										</h2>
+										<div class="d-flex mb-3">
+											<span class="cat">Cheverolet</span>
+											<p class="price ml-auto">$500
+												<span>/day</span>
+											</p>
+										</div>
+										<p class="d-flex mb-0 d-block">
+											<a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
+											<a href="#" class="btn btn-secondary py-2 ml-1">Details</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="ftco-section ftco-about">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);"></div>
+					<div class="col-md-6 wrap-about ftco-animate">
+						<div class="heading-section heading-section-white pl-md-5">
+							<span class="subheading">About us</span>
+							<h2 class="mb-4">Welcome to THNITY</h2>
+
+							<p>Tous vos trajets courte et longue distance réalisés sur THNITY.tn sont éligibles à la prime covoiturage annoncée par le gouvernement. Vérifiez votre éligibilité depuis votre profil dès maintenant puis publiez vos prochains trajets en covoiturage !</p>
+							<p>Réserver un trajet devient encore plus simple ! Facile d'utilisation et dotée de technologies avancées, notre appli vous permet de réserver un trajet à proximité en un rien de temps.</p>
+							<a href="#" class="btn btn-primary py-3 px-4">Search OFFERS</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="ftco-counter ftco-section img bg-light" id="section-counter">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18">
+						<div class="text text-border d-flex align-items-center">
+							<strong class="number" data-number="60">0</strong>
+							<span>Year
+								<br>Experienced</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18">
+						<div class="text text-border d-flex align-items-center">
+							<strong class="number" data-number="1090">0</strong>
+							<span>Total
+								<br>Cars</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18">
+						<div class="text text-border d-flex align-items-center">
+							<strong class="number" data-number="2590">0</strong>
+							<span>Happy
+								<br>Customers</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18">
+						<div class="text d-flex align-items-center">
+							<strong class="number" data-number="67">0</strong>
+							<span>Total
+								<br>Branches</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="ftco-footer ftco-bg-dark ftco-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">
+							<a href="#" class="logo">THN<span>ITY</span>
+							</a>
+						</h2>
+						<p>Réserver un trajet devient encore plus simple ! Facile d'utilisation et dotée de technologies avancées, notre appli vous permet de réserver un trajet à proximité en un rien de temps.</p>
+						<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+							<li class="ftco-animate">
+								<a href="#">
+									<span class="icon-twitter"></span>
+								</a>
+							</li>
+							<li class="ftco-animate">
+								<a href="#">
+									<span class="icon-facebook"></span>
+								</a>
+							</li>
+							<li class="ftco-animate">
+								<a href="#">
+									<span class="icon-instagram"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Have a Questions?</h2>
+						<div class="block-23 mb-3">
+							<ul>
+								<li>
+									<span class="icon icon-map-marker"></span>
+									<span class="text">Zone Industrielle Chotrana II, B.P. 160 Pôle Technologique El Ghazela 2083 Ariana Tunis، 2083</span>
+								</li>
+								<li>
+									<a href="#">
+										<span class="icon icon-phone"></span>
+										<span class="text">+216 21789456</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="icon icon-envelope"></span>
+										<span class="text">thnity@gmail.com</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;<script>
+							document.write(new Date().getFullYear());
+						</script>
+						All rights reserved | This template is made with
+						<i class="icon-heart color-danger" aria-hidden="true"></i>
+						by
+						<a href="https://colorlib.com" target="_blank">FuturForge</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer><!-- loader --><div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg>
+	</div>
+	<script src="{{asset("js/jquery.min.js")}}"></script>
+	<script src="{{asset("js/jquery-migrate-3.0.1.min.js")}}"></script>
+	<script src="{{asset("js/popper.min.js")}}"></script>
+	<script src="{{asset("js/bootstrap.min.js")}}"></script>
+	<script src="{{asset("js/jquery.easing.1.3.js")}}"></script>
+	<script src="{{asset("js/jquery.waypoints.min.js")}}"></script>
+	<script src="{{asset("js/jquery.stellar.min.js")}}"></script>
+	<script src="{{asset("js/owl.carousel.min.js")}}"></script>
+	<script src="{{asset("js/jquery.magnific-popup.min.js")}}"></script>
+	<script src="{{asset("js/aos.js")}}"></script>
+	<script src="{{asset("js/jquery.animateNumber.min.js")}}"></script>
+	<script src="{{asset("js/bootstrap-datepicker.js")}}"></script>
+	<script src="{{asset("js/jquery.timepicker.min.js")}}"></script>
+	<script src="{{asset("js/scrollax.min.js")}}"></script>
+	<script src="{{asset("https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false")}}"></script>
+	<script src="{{asset("js/google-map.js")}}"></script>
+	<script src="{{asset("js/main.js")}}"></script>
+</body></body></html>

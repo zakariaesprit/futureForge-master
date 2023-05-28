@@ -1,0 +1,90 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}Offres de Cov
+{% endblock %}
+{% block titre %}Offres de Cov
+{% endblock %}
+{% block breadcrumbs %}Offres de Cov
+{% endblock %}
+
+{% block body %}
+	<h1>Offre COVOITURAGE</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>ImageVehicule</th>
+				<td>
+					<img width="200" height="200" src="{{ asset('uploads/' ~ offre.imageVehicule) }}"/></td>
+			</tr>
+			<tr>
+				<th>PrenomChauff</th>
+				<td>{{ offre.prenomChauff }}</td>
+			</tr>
+			<tr>
+				<th>NumChauff</th>
+				<td>{{ offre.numChauff }}</td>
+			</tr>
+			<tr>
+				<th>DateOffre</th>
+				<td>{{ offre.dateOffre ? offre.dateOffre|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Heure</th>
+				<td>{{ offre.heure ? offre.heure|date('H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>PrixOffre</th>
+				<td>{{ offre.prixOffre }}</td>
+			</tr>
+			<tr>
+				<th>Depart</th>
+				<td>{{ offre.depart }}</td>
+			</tr>
+			<tr>
+				<th>Destination</th>
+				<td>{{ offre.destination }}</td>
+			</tr>
+			<tr>
+				<th>PlacesDispo</th>
+				<td>{{ offre.placesDispo }}</td>
+			</tr>
+			<tr>
+				<th>Avis</th>
+				<td>
+					{% if avgRate <= 0 %}
+						<span class="fa fa-star" style="color: #c2c0c0;"></span>
+					{% else %}
+						{% for i in 1..avgRate %}
+							<span class="fa fa-star checked" style="color: #01d28e;"></span>
+						{% endfor %}
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<th>Avis des clients</th>
+				<td>
+					<ul>
+						{% for avi in avis %}
+							<li>
+								{{ avi.idUser }}
+								<br>
+								{{ username }}
+								<br>
+								{{ avi.rate }}
+								<br>
+								{{ avi.descriptionAvis }}
+							</li>
+						{% endfor %}
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_offre_index') }}">back to list</a>
+
+	<a href="{{ path('app_offre_edit', {'idOffre': offre.idOffre}) }}">edit</a>
+
+	{{ include('offre/_delete_form.html.twig') }}
+{% endblock %}

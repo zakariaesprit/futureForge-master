@@ -1,0 +1,53 @@
+{% extends 'basebackUser.html.twig' %}
+
+{% block title %}Offre
+{% endblock %}
+
+{% block body %}
+	<h1>Offre</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>ImageVehicule</th>
+				<td>{{ offre.imageVehicule }}</td>
+			</tr>
+			<tr>
+				<th>PrenomChauff</th>
+				<td>{{ offre.prenomChauff }}</td>
+			</tr>
+			<tr>
+				<th>NumChauff</th>
+				<td>{{ offre.numChauff }}</td>
+			</tr>
+			<tr>
+				<th>DateOffre</th>
+				<td>{{ offre.dateOffre ? offre.dateOffre|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Heure</th>
+				<td>{{ offre.heure ? offre.heure|date('H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>PrixOffre</th>
+				<td>{{ offre.prixOffre }}</td>
+			</tr>
+			<tr>
+				<th>Depart</th>
+				<td>{{ offre.depart }}</td>
+			</tr>
+			<tr>
+				<th>Destination</th>
+				<td>{{ offre.destination }}</td>
+			</tr>
+			<tr>
+				<th>PlacesDispo</th>
+				<td>{{ offre.placesDispo }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_offre_index') }}">back to list</a>
+
+	{{ include('offreAdmin/_delete_form.html.twig') }}
+{% endblock %}
